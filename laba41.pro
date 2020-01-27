@@ -15,14 +15,16 @@ predicates
   nondeterm child(name, name)
   
 clauses
+	parent(leonardo, julia).
+	parent(leonardo, francisco).
+	parent(julia, molly).
+	parent(julia, ella).
   	parent(ella, cloe).
 	parent(ella, lilly).
 	parent(molly, mike).
 	parent(molly, paul).
-	parent(julia, molly).
-	parent(julia, ella).
-	male(mike).
-	male(paul).
+	
+	male(mike).male(paul).male(leonardo).male(francisco).
 	female(lilly).female(cloe).
 	female(molly).female(julia).
 
@@ -34,16 +36,16 @@ clauses
 
  ancestor(X,Z):-parent(X,Z).    
  ancestor(X,Z):-parent(X,Y),ancestor(Y,Z). 
-  brother(X,Y):-parent(Z,X),parent(Z,Y),male(X),male(Y).
-  sister(X,Y):-parent(Z,X),parent(Z,Y),female(X),female(Y).
+  brother(X,Y):-parent(Z,X),parent(Z,Y),male(X), X<>Y.
+  sister(X,Y):-parent(Z,X),parent(Z,Y),female(X), X<>Y.
   grandfather(X,Y):- father(X,Z), parent(Z,Y). 
   grandmother(X,Y):- mother(X,Z), parent(Z,Y).
-  uncle(X,Y):- parent(Z,Y), brother(X,Z), X<>Z.
+  uncle(X,Y):- brother(X,Z),parent(Z,Y), X<>Z.
 
 goal
-sister(cloe,lilly).
+%sister(cloe,lilly).
 %sister(X,Y).
   %brother(X,Y).
   %grandfather(X,Y).
   %grandmother(X,Y).
-%uncle(X,Y).
+  uncle(X,Y).
