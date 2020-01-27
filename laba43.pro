@@ -30,4 +30,4 @@ not( have( tom, X )).
 have( alan, mac ):-not( have( keit, butsi )),
 not( rodoslovnaya( spot )).
 goal
-animal( X ), not( have( _ , X )),write( X ).
+animal( X ), not( have( _ , X )).
